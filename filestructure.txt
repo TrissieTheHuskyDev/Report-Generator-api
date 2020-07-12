@@ -1,40 +1,143 @@
 .
-├── homepage
-│   ├── views.py
+├── Pipfile
+├── README.md
+├── api
+│   └── v1
+│       ├── report
+│       │   ├── __init__.py
+│       │   ├── admin.py
+│       │   ├── apps.py
+│       │   ├── migrations
+│       │   │   └── __init__.py
+│       │   ├── models.py
+│       │   ├── tests.py
+│       │   └── views.py
+│       ├── rest_auth
+│       │   ├── __init__.py
+│       │   ├── admin.py
+│       │   ├── app_settings.py
+│       │   ├── locale
+│       │   │   ├── cs
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── de
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── es
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── fr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── ko
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── pl
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── pt_BR
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       └── django.po
+│       │   │   ├── ru
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   ├── tr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       └── django.po
+│       │   │   ├── zh_Hans
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── django.mo
+│       │   │   │       └── django.po
+│       │   │   └── zh_Hant
+│       │   │       └── LC_MESSAGES
+│       │   │           ├── django.mo
+│       │   │           └── django.po
+│       │   ├── models.py
+│       │   ├── registration
+│       │   │   ├── __init__.py
+│       │   │   ├── app_settings.py
+│       │   │   ├── serializers.py
+│       │   │   ├── urls.py
+│       │   │   └── views.py
+│       │   ├── serializers.py
+│       │   ├── social_serializers.py
+│       │   ├── tests
+│       │   │   ├── __init__.py
+│       │   │   ├── django_urls.py
+│       │   │   ├── mixins.py
+│       │   │   ├── requirements.pip
+│       │   │   ├── settings.py
+│       │   │   ├── test_api.py
+│       │   │   ├── test_social.py
+│       │   │   └── urls.py
+│       │   ├── urls.py
+│       │   ├── utils.py
+│       │   └── views.py
+│       └── urls.py
+├── config
+│   ├── __init__.py
+│   ├── settings
+│   │   ├── base.py
+│   │   ├── local.py
+│   │   ├── production.py
+│   │   └── test.py
 │   ├── urls.py
-│   ├── tests.py
-│   ├── templates
-│   │   └── index.html
-│   ├── models.py
-│   ├── migrations
-│   │   └── __init__.py
-│   ├── apps.py
-│   ├── admin.py
-│   └── __init__.py
-├── authenticate
-│   ├── views.py
-│   ├── tests.py
-│   ├── templates
-│   │   └── registration
-│   │       ├── logout.html
-│   │       └── login.html
-│   ├── models.py
-│   ├── migrations
-│   │   └── __init__.py
-│   ├── apps.py
-│   ├── admin.py
-│   └── __init__.py
-└── aboutpage
-    ├── views.py
-    ├── urls.py
-    ├── tests.py
-    ├── templates
-    │   └── about.html
-    ├── models.py
-    ├── migrations
-    │   └── __init__.py
-    ├── apps.py
-    ├── admin.py
-    └── __init__.py
+│   └── wsgi.py
+├── db.sqlite3
+├── env.example
+├── filestructure.txt
+├── index.html
+├── links.txt
+├── manage.py
+├── project
+│   ├── aboutpage
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── about.html
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── authenticate
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── registration
+│   │   │       ├── login.html
+│   │   │       └── logout.html
+│   │   ├── tests.py
+│   │   └── views.py
+│   └── homepage
+│       ├── __init__.py
+│       ├── admin.py
+│       ├── apps.py
+│       ├── migrations
+│       │   └── __init__.py
+│       ├── models.py
+│       ├── templates
+│       │   └── index.html
+│       ├── tests.py
+│       ├── urls.py
+│       └── views.py
+└── requirements
+    ├── base.txt
+    ├── local.txt
+    ├── production.txt
+    └── test.txt
 
-10 directories, 27 files
+44 directories, 96 files
