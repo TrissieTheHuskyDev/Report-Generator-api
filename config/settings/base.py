@@ -76,7 +76,11 @@ LOCAL_APPS = (
 )
 
 API_APPS = (
-    # 'api.v1.account',
+    'api.v1.profile',
+    'api.v1.profile.settings',
+    'api.v1.announcements',
+    'api.v1.chat',
+    'api.v1.documents',
     'api.v1.report',
     'api.v1.rest_auth',
     'api.v1.rest_auth.registration',
