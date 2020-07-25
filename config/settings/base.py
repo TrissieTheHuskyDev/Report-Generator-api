@@ -18,18 +18,17 @@ import os
 
 # https://medium.com/@djstein/modern-django-part-1-project-refactor-and-meeting-the-django-settings-api-d2784efb606f
 ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path('project')
+APPS_DIR = ROOT_DIR.path("project")
 # TEMPLATE_DIR = ROOT_DIR.path('templates')
 
 env = environ.Env()
 # This section added from an update to standards in CookieCutter Django to ensure no errors are encountered at runserver/migrations
-READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
-    env_file = str(ROOT_DIR.path('.env'))
-    print('Loading : {}'.format(env_file))
+    env_file = str(ROOT_DIR.path(".env"))
+    print("Loading : {}".format(env_file))
     env.read_env(env_file)
-    print('The .env file has been loaded. See base.py for more information')
-
+    print("The .env file has been loaded. See base.py for more information")
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,96 +39,87 @@ if READ_DOT_ENV_FILE:
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 # https://medium.com/@djstein/modern-django-part-1-project-refactor-and-meeting-the-django-settings-api-d2784efb606f
-DEBUG = env.bool('DJANGO_DEBUG', False)
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
 DJANGO_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-
-
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
 )
 
 THIRD_PARTY_APPS = (
-    'rest_framework',
-    'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'rest_framework_swagger',
-    'django.contrib.sites',
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_swagger",
+    "rest_auth",
+    "rest_auth.registration",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.twitter",
 )
 
-LOCAL_APPS = (
-    'project.homepage',
-    'project.aboutpage',
-    'project.authenticate'
-)
+LOCAL_APPS = ("project.homepage", "project.aboutpage")
 
 API_APPS = (
-    'api.v1.profile',
-    'api.v1.profile.settings',
-    'api.v1.announcements',
-    'api.v1.chat',
-    'api.v1.documents',
-    'api.v1.report',
-    'api.v1.rest_auth',
-    'api.v1.rest_auth.registration',
-
+    "api.v1.announcements",
+    "api.v1.chat",
+    "api.v1.documents",
+    "api.v1.report",
+    "api.v1.userprofile",
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + API_APPS
 
 
-
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
 
-WSGI_APPLICATION = 'config.wsgi.application'
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(ROOT_DIR.path('db.sqlite3')),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": str(ROOT_DIR.path("db.sqlite3")),
     }
 }
 
@@ -139,26 +129,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -170,35 +154,35 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
-STATICFILES_DIRS = (
-    str(APPS_DIR.path('static')),
-)
+STATIC_URL = "/static/"
+STATIC_ROOT = str(ROOT_DIR("staticfiles"))
+STATICFILES_DIRS = (str(APPS_DIR.path("static")),)
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
-MEDIA_URL = '/media/'
-MEDIA_ROOT = str(APPS_DIR('media'))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = str(APPS_DIR("media"))
+AUTH_USER_MODEL = "userprofile.Account"
 
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    )
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+    ),
 }
+# REST_AUTH_SERIALIZERS = {
+#     "USER_DETAILS_SERIALIZER": "api.v1.userprofile.serializers.UserSerializer"
+# }
+# REST_SESSION_LOGIN = True
 
-
-REST_SESSION_LOGIN = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 
 SWAGGER_SETTINGS = {
-    'LOGIN_URL': 'login',
-    'LOGOUT_URL': 'logout',
+    "LOGIN_URL": "login",
+    "LOGOUT_URL": "logout",
 }
