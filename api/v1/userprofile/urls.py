@@ -1,8 +1,16 @@
 from django.urls import path, include
+from django.conf.urls import url
 from rest_framework import routers
 from django.views.generic import TemplateView
-from . import views
+from .views import ProfileDetailView, ProfileView
+
 
 router = routers.DefaultRouter()
-router.register("", views.UserProfileView)
-urlpatterns = [path("", include(router.urls))]
+router.register("", ProfileView)
+
+
+urlpatterns = [
+    url(r'^profile/$',ProfileDetailView.as_view(), name='user_profile' ),
+    path("", include(router.urls))
+]
+

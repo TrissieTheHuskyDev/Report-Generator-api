@@ -18,7 +18,7 @@ import os
 
 # https://medium.com/@djstein/modern-django-part-1-project-refactor-and-meeting-the-django-settings-api-d2784efb606f
 ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path("project")
+APPS_DIR = ROOT_DIR.path("api/v1/")
 # TEMPLATE_DIR = ROOT_DIR.path('templates')
 
 env = environ.Env()
@@ -41,7 +41,7 @@ if READ_DOT_ENV_FILE:
 # https://medium.com/@djstein/modern-django-part-1-project-refactor-and-meeting-the-django-settings-api-d2784efb606f
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["10.0.0.76"]
 
 
 # Application definition
@@ -161,7 +161,7 @@ STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
-MEDIA_URL = "/media/"
+MEDIA_URL = "/"
 MEDIA_ROOT = str(APPS_DIR("media"))
 AUTH_USER_MODEL = "userprofile.Account"
 
@@ -174,7 +174,7 @@ REST_FRAMEWORK = {
 # REST_AUTH_SERIALIZERS = {
 #     "USER_DETAILS_SERIALIZER": "api.v1.userprofile.serializers.UserSerializer"
 # }
-# REST_SESSION_LOGIN = True
+REST_SESSION_LOGIN = True
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SITE_ID = 1

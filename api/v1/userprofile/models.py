@@ -1,17 +1,4 @@
-# from django.contrib.auth.models import User
-# from django.db import models
-
-
-# class UserProfile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     # custom fields for user
-#     username = models.CharField(max_length=100, default="aj123")
-#     company = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.user.username
-
-
+import os
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -40,12 +27,22 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
+def get_upload_path(instance, filename):
+    return os.path.join("user_%s" % instance.username, "profile_picture_%s" % filename)
+
+
 class Account(AbstractBaseUser):
+    profile_picture = models.ImageField(
+        upload_to=get_upload_path, default="defaults/avatar5.jpeg"
+    )
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     first_name = models.CharField(max_length=30, default=" ")
     last_name = models.CharField(max_length=30, default=" ")
-    lucky_number = models.IntegerField(max_length=30, default=1)
+    employee_number = models.CharField(max_length=30)
+    lucky_number = models.IntegerField(default=1)
+
+    # non important field for now lol
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -55,9 +52,9 @@ class Account(AbstractBaseUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
-
     objects = MyAccountManager()
 
+    # String representation of this object
     def __str__(self):
         return self.email
 
